@@ -1,65 +1,42 @@
 # computerGraphics
-A game made with openGL for Bil 421 Homework 1
 
-### Lanes
-- There is 18 lanes.
-- Each lane has a exact direction.
-- Even number lanes from right to left, odds are in opposite direction.
+This is BIL 421 Assignment 1, completed on January 30, 2020.
 
-### Vehicles
-- Vehicles are created at random times.
-- It is randomly created in 18 different lanes.
-- Cars or trucks is also chosen randomly.
-- If the agent hits, the game is over.
+A 2D road-crossing game written with immediate-mode OpenGL and GLUT. The player moves a triangle across 18 lanes of cars and trucks and can collect coins. A collision, or a step against the agent's current direction, ends the game.
 
-### Coins
-- Coins are created at random times.
-- Its lane and its position are choosen randomly.
-- It has a certain time and disappears when time runs out.
-- If the agent catches it earns 5 points.
-- The time of the coin can be followed in the upper left.
+The original handout is `assignment1.pdf`.
 
-### Agent
-- When the game starts, the agent is at the bottom center.
-- Agent can be moved with the arrow keys.
-- Moving up and down gives 1 point.
-- Score can be followed from the bottom left.
-- The agent cannot go down while looking up. (or vice versa)
+## Build
 
-### Keyboard and Mouse
-- Q and q keys  -> quit game
-- Arrow keys    -> agent moves
-- Left click    -> Start and stop game
-- Right click   -> Stop and move one frame.
-- Enter         -> power move
-- 1             -> Easy mode
-- 2             -> Normal mode
-- 3             -> Hard mode
+Install a C++ compiler, OpenGL, GLU, and GLUT. On Debian or Ubuntu:
 
-### Extra Features:
-- The number of vehicles in the game can be followed instantly from right bottom.
-- The remaining time of the coin can be tracked from the top left.
-- With the Enter key, the agent can suddenly go to the end of the road. (Power move)
-- If agent can go to the end of the road while in power move, he gets 3 times more points.
-- The color of the vehicle that crashed becomes orange. (Normally blue)
-- When the game is over, the background color fades.
-- There are 3 game modes in the game. Easy, normal, hard.
-- Game mode can be seen on the top right.
-- Press 1 for easy mode, 3 for normal mode, 3 for hard mode.
-- The game starts in normal mode.
-- Hard mode brings 2x points.
+```bash
+sudo apt install g++ freeglut3-dev libglu1-mesa-dev
+```
 
+```bash
+g++ -std=c++11 game.cpp -o game -lGL -lGLU -lglut
+```
 
-### Implementation
-- The game is implemented on both linux and windows.
-- Game works directly in visual studio on windows.
+## Run
 
-- To run on linux, line 404 should be "Vehicle v{};" because of the C++ version.
-- After changing, run the following commands.
-- g++ game.cpp -o game.o -lGL -lGLU -lglut -lGLEW
-- ./game.o
+```bash
+./game
+```
 
-### Screen Shots
-![Screenshot](https://github.com/msaidzengin/computerGraphics/blob/master/ss/ss1.png?raw=true)
-![Screenshot](https://github.com/msaidzengin/computerGraphics/blob/master/ss/ss2.png?raw=true)
-![Screenshot](https://github.com/msaidzengin/computerGraphics/blob/master/ss/ss3.png?raw=true)
+## Controls
+
+- Arrow keys move the agent. A step with the current direction scores 1 point.
+- Left click pauses or resumes.
+- Right click pauses, then advances one step. Arrow keys pressed while paused are applied on that step.
+- Enter starts a power move to the far sidewalk. Reaching it adds 2 extra points for each step of that move.
+- 1, 2, and 3 select easy, normal, and hard. Hard doubles step and coin points and makes traffic faster. The game starts in normal mode.
+- Q quits.
+
+The score (`Puan`) is at the bottom left, the vehicle count at the bottom right, the mode at the top right, and the coin timer at the top left. A coin is worth 5 points. When the game ends, the roads turn gray and the vehicle that hit the agent turns orange.
+
+## Screenshots
+
+![Normal mode](ss/ss1.png)
+![Hard mode with a coin](ss/ss2.png)
+![Easy mode](ss/ss3.png)
